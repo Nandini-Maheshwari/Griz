@@ -31,4 +31,4 @@ const moodSchema = new Schema(
 // compound index -> an index on both userId and date fields together
 moodSchema.index({ userId: 1, date: 1 }, { unique: true });
 
-export default Mood = mongoose.model("Mood", moodSchema);
+export const Mood = mongoose.model("Mood", moodSchema);
