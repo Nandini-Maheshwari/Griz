@@ -1,17 +1,12 @@
-import express from 'express';
-import { verifyJWT } from '../middlewares/auth.middleware.js';
-import { 
-    saveChat,
-    getLatestChat,
-    clearChat
-} from '../controllers/chat.controller.js';
+import express from "express";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { handleMessage, getChatHistory } from "../controllers/chat.controller.js";
 
-const chatRouter = express.Router();
+const router = express.Router();
 
-// Protected Routes (require JWT)
-chatRouter.route("/")
-    .post(verifyJWT, saveChat)
-    .get(verifyJWT, getLatestChat)
-    .delete(verifyJWT, clearChat);
+// Protected routes (require JWT)
+router.route("/")
+  .post(verifyJWT, handleMessage)    // POST /api/v1/chats
+  .get(verifyJWT, getChatHistory);   // GET /api/v1/chats
 
-export default chatRouter;
+export default router;
