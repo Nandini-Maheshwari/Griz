@@ -1,12 +1,37 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ThemeProvider from './context/ThemeProvider.jsx';
+import Layout from './components/layout/Layout';
+import Landing from './pages/Landing';
+// import Chat from './pages/Chat';
+// import MoodTracker from './pages/MoodTracker';
 
-function App() {
+// Placeholder component for routes that are not yet implemented
+const UnderConstruction = ({ pageName }) => (
+  <div className="flex flex-col items-center justify-center h-96">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+    </svg>
+    <h2 className="mt-4 text-2xl font-bold text-gray-800 dark:text-white">{pageName} Coming Soon</h2>
+    <p className="mt-2 text-gray-600 dark:text-gray-400">This page is under construction.</p>
+  </div>
+);
 
+const App = () => {
   return (
-    <>
-      <h1>I'm Griz</h1>
-    </>
-  )
-}
+    <ThemeProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            {/* <Route path="/chat" element={<UnderConstruction pageName="Chat" />} />
+            <Route path="/mood-tracker" element={<UnderConstruction pageName="Mood Tracker" />} /> */}
+            <Route path="*" element={<UnderConstruction pageName="Page" />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;
