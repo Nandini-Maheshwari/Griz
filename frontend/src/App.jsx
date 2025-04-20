@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThemeProvider from './context/ThemeProvider.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
 import Layout from './components/layout/Layout';
+import ProtectedRoute from './utils/protectedRoutes.jsx';
 import Landing from './pages/Landing';
-// import Chat from './pages/Chat';
+import LoginPage from './pages/Login.jsx';
+import RegisterPage from './pages/Register.jsx';
+import ChatPage from './pages/Chat';
 // import MoodTracker from './pages/MoodTracker';
 
 // Placeholder component for routes that are not yet implemented
@@ -21,14 +25,21 @@ const App = () => {
   return (
     <ThemeProvider>
       <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            {/* <Route path="/chat" element={<UnderConstruction pageName="Chat" />} />
-            <Route path="/mood-tracker" element={<UnderConstruction pageName="Mood Tracker" />} /> */}
-            <Route path="*" element={<UnderConstruction pageName="Page" />} />
-          </Routes>
-        </Layout>
+        <AuthProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegisterPage />} />
+              <Route path="/chat" element={<ChatPage />} />
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoute />}>
+                {/* <Route path="mood" element={<MoodPage />} /> */}
+              </Route>
+              <Route path="*" element={<UnderConstruction pageName="Page" />} />
+            </Routes>
+          </Layout>
+        </AuthProvider>
       </Router>
     </ThemeProvider>
   );
