@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../context/themeContext.jsx'; 
-import { useAuth } from '../../context/AuthContext.jsx';
+import { useTheme } from '../../context/themeContext.js';
+import { useAuth } from '../../context/authContext.js';
 import { useState } from 'react';
 
 const Navbar = () => {
