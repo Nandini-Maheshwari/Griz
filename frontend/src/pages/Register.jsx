@@ -6,7 +6,7 @@ import { useTheme } from '../context/themeContext';
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     username: '',
-    fullName: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -87,16 +87,16 @@ const RegisterPage = () => {
           </div>
           
           <div>
-            <label htmlFor="fullName" className={`block text-sm font-medium ${
+            <label htmlFor="name" className={`block text-sm font-medium ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
             }`}>
               Full Name
             </label>
             <input
-              id="fullName"
-              name="fullName"
+              id="name"
+              name="name"
               type="text"
-              value={formData.fullName}
+              value={formData.name}
               onChange={handleChange}
               className={`mt-1 block w-full rounded-md shadow-sm py-2 px-3 ${
                 theme === 'dark' 
